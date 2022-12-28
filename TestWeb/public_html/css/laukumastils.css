@@ -1,0 +1,17 @@
+button {
+    width: 80px;
+    height: 80px;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 11px;
+}
+#tabula {
+    display: table;
+    border-collapse: collapse;
+}
+#rinda {
+    display: table-row;
+}
+
+
+

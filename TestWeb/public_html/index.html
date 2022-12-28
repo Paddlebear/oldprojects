@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Bootstrap Theme Simply Me</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/stils.css">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-default" id="myNavbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand">AG</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#div">&lt;DIV&gt;</a></li>
+        <li><a href="#span">&lt;SPAN&gt</a></li>
+        <li><a href="#style">&lt;STYLE&gt</a></li>
+        <li><a href="#knifi">CSS knifi</a></li>
+        <li><a href="laukums.html" target="_blank">Laukums</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid bg-1 text-center" id="div1">
+    <br>
+  <img src="images/divbilde.png" class="img-responsive img-circle margin" style="display:inline" alt="Konteineri ar &lt;div&gt;" width="200" height="200">
+  <h3 class="margin">&lt;div&gt;</h3>
+  <p>&lt;div&gt; tagu izmanto, lai definētu sadaļu no HTML dokumenta. To izmanto kā konteineru HTML elementiem, kuriem pēc tam piešķir stilu, izmantojot CSS vai JavaScript.</p>
+</div>
+<!-- Second Container -->
+<div class="container-fluid bg-2 text-center" id="span">
+  <h3 class="margin">&lt;span&gt;</h3>
+  <p>&lt;span&gt; tags ir līdzīgs &lt;div&gt tagam - tas izveido konteineru HTML elementiem. Galvenā atšķirība ir tā, ka &lt;span&gt; definē konteineru rindā, bet &lt;div&gt; definē blokveida konteineru.</p>
+</div>
+
+<!-- Third Container (Grid) -->
+<div class="container-fluid bg-3 text-center" id="style">    
+  <h3 class="margin">&lt;style&gt;</h3><br>
+  <p>&lt;style&gt; izmanto, lai definētu stila informāciju (CSS) HTML dokumentā. Tajā definē to, kā lapai vajadzētu pārlūkprogrammā parādīties.</p>
+</div>
+
+<div class="container-fluid bg-4 text-center" id="knifi">
+    <h3 class="margin">CSS knifi (c. <a href="https://www.webdesignerdepot.com/2016/10/20-essential-css-tricks-every-designer-should-know/" target="_blank">Web Designer Depot</a>)</h3><br>
+    <div class="row">
+    <div class="col-sm-4">
+        <p>* + selektors</p>
+        <p>Pēc selektora izmantojot *, ir iespējams izvēlēties visus elementus HTML dokumentā ar doto tagu, un tad var ātri globāli mainīt, piemēram, teksta fontu visā lapā.</p>
+      <img src="images/selektors.PNG" class="center rounded-corners" alt="Piemērs">
+    </div>
+    <div class="col-sm-4">
+      <p>Attēlu izmēru maiņa</p>
+      <p>Ja ir vajadzīgs ātri mainīt attēla izmērus tā, lai tas ietilptu, piemēram, ekrānā vai konteinerā, atstājot attēla proporcijas nemainītas, tad vienam no attēla izmēriem nosaka max-[izmērs]:100%.</p>
+      <img src="images/izmeri.PNG" class="center rounded-corners" alt="Piemērs">
+    </div>
+    <div class="col-sm-4">
+      <p>Lielo un mazo burtu lietojums</p>
+      <p>Lai ātri tekstu pārmainītu uz tikai lieliem vai maziem burtiem, izmanto text-transform atribūtu un attiecīgo formatējumu. Tas ir daudz ātrāk, nekā pārrakstīt visu tekstu.</p>
+      <img src="images/burti.PNG" class="center rounded-corners" alt="Piemērs">
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="container-fluid bg-5 text-center">
+  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" target="_blank">www.w3schools.com</a></p> 
+</footer>
+<script src="js/navbarstick.js"></script>
+</body>
+</html>
+

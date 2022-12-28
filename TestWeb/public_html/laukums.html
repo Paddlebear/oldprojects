@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Laukums</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/laukumastils.css">
+    </head>
+    <body>
+ <form>
+  <label for="skaitlis">Izmērs (temats)</label><br>
+  <select id="skaitlis" name="skaitlis">
+      <option value = "4">4x4 (Krāsu hex kodi, 1.5min)</option>
+      <option value = "6">6x6 (Dzīvnieku latīn. nos., 3min)</option>
+      </select><br>
+</form>
+        <button style = "width:50px;height:20px" onclick="myFunction()">Zīmēt</button>
+        <button style = "width:50px;height:20px" onclick="supercleaning()">Dzēst</button>
+        <br><br>
+    <script>
+        let skaitli1 = ["url('images/01.png')", "url('images/02.png')", "url('images/03.png')", "url('images/04.png')", "url('images/05.png')", "url('images/06.png')", "url('images/07.png')", "url('images/08.png')", "url('images/09.png')"];
+        let skaitli2 = ["#ff0000", "#ffa000", "#ffff00", "#00ff00", "#0000ff", "#a000ff", "#ffa0ff", "#a0a0a0", "#ffffff"];
+        let animals1 = ["url('images/a1.png')", "url('images/a2.png')", "url('images/a3.png')", "url('images/a4.png')", "url('images/a5.png')", "url('images/a6.png')", "url('images/a7.png')", "url('images/a8.png')", "url('images/a9.png')", "url('images/a10.png')", "url('images/a11.png')", "url('images/a12.png')", "url('images/a13.png')", "url('images/a14.png')", "url('images/a15.png')", "url('images/a16.png')", "url('images/a17.png')", "url('images/a18.png')"];
+        let animals2 = ["Felis", "Canis", "Cygnus", "Falco", "Vulpes", "Mus", "Ursus", "Ciconia", "Anas", "Apis", "Homo", "Salmo", "Danaus", "Crocodilia", "Natrix", "Capra", "Equus", "Coronaviridae"];
+        let saraksts = [];
+        let masivs1, masivs2;
+        var sakums = 1;
+        var t = 0;
+        var uzvara = 0;
+        var n, timecount, tmax, sek, dzesana;
+        var pirmaisid = 1;
+        var otraisid = 1;
+        function sajukums(n){
+            for (let i = 0; i < (n*n)/2; i++) {
+                if (n == 4) {
+                    saraksts.push(skaitli1[i]);
+                    saraksts.push(skaitli2[i]);
+                }
+                if (n == 6) {
+                    saraksts.push(animals1[i]);
+                    saraksts.push(animals2[i]);
+                }
+            }
+            for (let i = 0; i < saraksts.length; i++) {
+                var rand = Math.floor(Math.random()*saraksts.length);
+                var tmp = saraksts[rand];
+                saraksts[rand] = saraksts[i];
+                saraksts[i] = tmp;
+            }
+        }
+        function timer() {
+            t++;
+            sek = t%60;
+            if (sek < 10) {
+                laiks.innerHTML = "Laiks - " +Math.floor(t/60) +':0' +sek;
+            } else {
+                laiks.innerHTML = "Laiks - " +Math.floor(t/60) +':' +sek;
+            }
+            if (t == tmax) {
+                clearInterval(timecount);
+                laiks.innerHTML = "Laiks beidzies.";
+                for (let i = 0; i < n*n; i++) {
+                document.getElementById(i+1).style.pointerEvents = "none";  
+                }
+            }
+        }
+        function stoptimer() {
+            clearInterval(timecount);
+        }
+        function myFunction() {
+            supercleaning();
+            n = document.getElementById("skaitlis").value;
+            if (n == 4) {
+                masivs1 = skaitli1;
+                masivs2 = skaitli2;
+                tmax = 90;
+            }
+            if (n == 6) {
+                masivs1 = animals1;
+                masivs2 = animals2;
+                tmax = 180;
+            }
+            sajukums(n);
+            var tabula = document.createElement("div");
+            tabula.setAttribute("id", "tabula");
+            for (let i = 0; i < n; i++) {
+                var rinda = document.createElement("div");
+                rinda.setAttribute("id", "rinda");
+                for (let j = 0; j < n; j++) {
+                   var button = document.createElement("button");
+                   if (saraksts[(n*i+j)].length >= 20) {
+                       button.setAttribute("value", "bilde");
+                   }
+                   else {
+                      button.setAttribute("value", "teksts"); 
+                   }
+                   button.setAttribute("id", ""+(n*i+(j+1)));
+                   button.setAttribute("onclick", "maina(this)");
+                   rinda.appendChild(button);
+                }
+                tabula.appendChild(rinda);
+            }
+            document.body.appendChild(tabula);
+        var laiks = document.createElement("p");
+        laiks.setAttribute("id", "laiks");
+        document.body.appendChild(laiks);
+        laiks.innerHTML = "Laiks - 0:00";
+        timecount = setInterval(timer, 1000);
+        }
+        function cleaning() {
+            document.body.removeChild(document.getElementById("tabula"));
+            document.body.removeChild(document.getElementById("laiks"));
+            saraksts = [];
+            stoptimer();
+            sakums = 1;
+            t = 0;
+            uzvara = 0;
+        }
+        function supercleaning() {
+            if (document.getElementById("tabula")!= null) {
+                cleaning();
+            }
+        }
+        function mainabilde(x) {
+            document.getElementById(x).style.backgroundImage = saraksts[x-1];
+        }
+        function mainateksts(x) {
+            document.getElementById(x).innerHTML = saraksts[x-1];
+        }
+        function dzest(x, y) {
+            document.getElementById(x).style.backgroundImage = "";
+            document.getElementById(y).style.backgroundImage = "";
+            document.getElementById(x).innerHTML = "";
+            document.getElementById(y).innerHTML = "";
+        }
+        function maina(a) {
+           if (sakums == 1) {
+               clearTimeout(dzesana);
+               if ((masivs1.indexOf(saraksts[pirmaisid-1]) !== masivs2.indexOf(saraksts[otraisid-1])) || (masivs2.indexOf(saraksts[pirmaisid-1]) !== masivs1.indexOf(saraksts[otraisid-1]))) {
+                    dzest(pirmaisid, otraisid);
+               }
+               pirmaisid = Number.parseInt(a.id);
+               if (document.getElementById(pirmaisid).value === "bilde") {
+                   mainabilde(pirmaisid);
+               } else {
+                  mainateksts(pirmaisid);
+               }
+               sakums = 0;
+           }
+           else if (sakums == 0) {
+               otraisid = Number.parseInt(a.id);
+               if (document.getElementById(otraisid).value === "bilde") {
+                   mainabilde(otraisid);
+               } else {
+                  mainateksts(otraisid); 
+               }
+               if (document.getElementById(pirmaisid).value === document.getElementById(otraisid).value) {
+                    dzesana = setTimeout(function(){dzest(pirmaisid, otraisid);}, 1500);
+               } else {
+                   if (document.getElementById(pirmaisid).value === "bilde") {
+                       if (masivs1.indexOf(saraksts[pirmaisid-1]) === masivs2.indexOf(saraksts[otraisid-1])) {
+                           uzvara++;
+                           document.getElementById(pirmaisid).style.pointerEvents = "none";
+                           document.getElementById(otraisid).style.pointerEvents = "none";
+                       }
+                       else {
+                          dzesana = setTimeout(function(){dzest(pirmaisid, otraisid);}, 1500);
+                       }
+                   } else {
+                      if (masivs2.indexOf(saraksts[pirmaisid-1]) === masivs1.indexOf(saraksts[otraisid-1])) {
+                           uzvara++;
+                           document.getElementById(pirmaisid).style.pointerEvents = "none";
+                           document.getElementById(otraisid).style.pointerEvents = "none";
+                       }
+                       else {
+                         dzesana = setTimeout(function(){dzest(pirmaisid, otraisid);}, 1500);
+                       } 
+                   }
+                   if (uzvara === n*n/2) {
+                       stoptimer();
+                       console.log(t);
+                       sek = t%60;
+                       if (sek < 10) {
+                       laiks.innerHTML = "Uzvara! Laiks - " +Math.floor(t/60) +':0' +sek;
+                       } else {
+                       laiks.innerHTML = "Uzvara! Laiks - " +Math.floor(t/60) +':' +sek;
+                       }
+                   }
+               }
+               sakums = 1;
+            }
+        }
+        </script>
+    </body>
+</html>
